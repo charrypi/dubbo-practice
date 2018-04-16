@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<dubbo:application name="dubbo-consumer" logger="log4j"/>
+
+	<!-- 日志 -->
+	<dubbo:protocol accesslog="C:\Users\Administrator\Desktop\dubbolog.log" />
+
+	<dubbo:registry address="multicast://224.1.2.3:1234" />
+
+	<dubbo:reference id="commonService"
+		interface="com.bigbang.dubbo.common.service.CommonService" />
+
+	<!-- 可以不使用多播注册方式，直接调用远程url -->
+	<!-- <dubbo:reference id="commonService" interface="com.bigbang.dubbo.common.service.CommonService" 
+		url="dubbo://localhost:20880"/> -->
+
+	<!-- 泛化引用，针对客户端没有接口和参数模型的情况下，需要引入fastjson包 -->
+	<dubbo:reference id="genericService" generic="true"
+		interface="com.alibaba.dubbo.rpc.service.GenericService" />
+</beans>
