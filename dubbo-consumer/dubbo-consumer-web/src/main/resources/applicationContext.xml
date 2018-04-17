@@ -10,7 +10,7 @@
 	<!-- 日志 -->
 	<dubbo:protocol accesslog="C:\Users\Administrator\Desktop\dubbolog.log" />
 
-	<dubbo:registry address="multicast://224.1.2.3:1234" />
+	<dubbo:registry address="zookeeper://192.168.6.128:2181" client="zkclient"/>
 
 	<dubbo:reference id="commonService"
 		interface="com.bigbang.dubbo.common.service.CommonService" />
